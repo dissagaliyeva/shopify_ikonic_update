@@ -1,0 +1,36 @@
+name: Scheduled Job
+
+on:
+  workflow_dispatch:  
+  schedule:
+    - cron: '0 */1 * * *'  # Runs every hour
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10.14'  
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run pipeline script
+      run: |
+        python update.py
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add updated_bags.csv updated_other.csv
+        git commit -m "Updated quantities for bags and other products"
+        git push
