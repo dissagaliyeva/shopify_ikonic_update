@@ -3,7 +3,7 @@ name: Scheduled Job
 on:
   workflow_dispatch:  
   schedule:
-    - cron: '0 */1 * * *'  # Runs every hour
+    - cron: '0 * * * *'  # Runs every hour
 
 jobs:
   run-pipeline:
