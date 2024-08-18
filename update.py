@@ -1,7 +1,6 @@
 import pandas as pd
 import requests
 from lxml import etree
-import requests
 
 # URL of the XML file
 url = "https://www.styleisnow.com/feeds/stock_xml_incremental.xml"
