@@ -53,7 +53,9 @@ if __name__ == '__main__':
         other = pd.read_csv('other_products.csv')
         other_merged = other[other['SKU FULL'].isin(df['SKU FULL'])]
         other_merged['Qty'] = df[df['SKU FULL'].isin(other_merged['SKU FULL'])]['qty'].values
-        other_merged.to_csv('updated_other.csv', index=False)
+        
+        other_single = other_merged[other_merged['Barcode'].str.len() == 1].to_csv('updated_single_others.csv')
+        other_multiple = other_merged[other_merged['Barcode'].str.len() != 1].to_csv('updated_multiple_others.csv')
         
         del bags, df, other, bags_merged, other_merged
         
