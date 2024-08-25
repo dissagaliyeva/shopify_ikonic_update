@@ -47,6 +47,8 @@ def get_products_to_add(new_bags, new_others):
     others.to_csv('others_to_add.csv', index=False)
     
     # TODO: update the old bags!!!!!!!!!!!
+    bags.to_csv('bags.csv', index=False)
+    others.to_csv('all_others.csv', index=False)
 
 
 def update_products():
