@@ -62,6 +62,7 @@ def update_products():
             file.write(response.content)
         print('File added successfully')
         new_bags, new_others = fix_file('all_products.csv')
+        get_products_to_add(new_bags, new_others)
     else:
         print(f"Failed to download the file. Status code: {response.status_code}")
 
