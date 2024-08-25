@@ -375,16 +375,18 @@ def fix_file(filename):
     data['Heel height'].fillna(0, inplace=True)
     data['Heel height'] = data['Heel height'].apply(lambda x: fix_heel_dim(x))
     
-    data.drop(columns=['Nome ITA', 'Descrizione ITA', 'Star', 'Insole length', 'Color Styleisnow ITA', 'FTA', 'Size Info'], inplace=True)
+    data.drop(columns=['Nome ITA', 'Descrizione ITA', 'Star', 'Insole length', 'Color Styleisnow ITA', 'FTA'], inplace=True)
+    
+    data.to_csv('all_products.csv')
     
     bags = data[data['Tags'].str.lower().str.contains('bags')]
     bags.drop(columns=['Accessory length', 'Accessory height', 'Accessory weight', 'Heel height', 'Plateau height',], inplace=True)
     bags['SKU FULL'] = bags['Sku Styleisnow'] + '-' + 'os'
     
-    # bags.to_csv('bags.csv', index=False)
+    bags.to_csv('bags.csv', index=False)
     
     others = data[~data['Tags'].str.lower().str.contains('bags')]
     others.drop(columns=['Bag length', 'Bag height', 'Bag width', 'Dimensions'], inplace=True)
     
-    # others.to_csv('other_products.csv', index=False)
+    others.to_csv('other_products.csv', index=False)
     return bags, others

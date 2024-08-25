@@ -38,7 +38,7 @@ def get_data():
     
 def get_products_to_add(new_bags, new_others):
     old_bags = pd.read_csv('bags.csv')
-    old_others = pd.read_csv('all_others.csv')
+    old_others = pd.read_csv('other_products.csv')
     
     bags = new_bags[~new_bags['Sku Styleisnow'].isin(old_bags['Sku Styleisnow'].values.tolist())]
     others = new_others[~new_others['Sku Styleisnow'].isin(old_others['Sku Styleisnow'].values.tolist())]
@@ -47,8 +47,8 @@ def get_products_to_add(new_bags, new_others):
     others.to_csv('others_to_add.csv', index=False)
     
     # TODO: update the old bags!!!!!!!!!!!
-    bags.to_csv('bags.csv', index=False)
-    others.to_csv('all_others.csv', index=False)
+    # bags.to_csv('bags.csv', index=False)
+    # others.to_csv('all_others.csv', index=False)
 
 
 def update_products():
@@ -84,7 +84,6 @@ if __name__ == '__main__':
         other = pd.read_csv('other_products.csv')
         other_merged = other[other['SKU FULL'].isin(df['SKU FULL'])]
         other_merged['Qty'] = df[df['SKU FULL'].isin(other_merged['SKU FULL'])]['qty'].values
-        
         other_merged.to_csv('updated_other.csv', index=False)
         
         update_products()
