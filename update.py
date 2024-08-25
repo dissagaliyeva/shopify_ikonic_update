@@ -85,5 +85,7 @@ if __name__ == '__main__':
         
         other_merged.to_csv('updated_other.csv', index=False)
         
+        update_products()
+        
         del bags, df, other, bags_merged, other_merged
         
