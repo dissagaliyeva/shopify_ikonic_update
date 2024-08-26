@@ -348,7 +348,7 @@ def fix_file(filename):
     data['Retail Price'] = data['Retail Price'].apply(lambda x: float(str(x).replace('Eur', '').replace(',', ''.strip())))
     data['Retail Price'] *= 1.08        # convert to USD
     data['Compare to Price'] = data['Retail Price'].apply(lambda x: round_to_nearest_10(x))
-    data['Retail Price'] = data['Retail Price'] * 1.45
+    data['Retail Price'] = data['Retail Price'] * 1.25
     data['Retail Price'] = data['Retail Price'].apply(lambda x: round_to_5_or_0(x))
     
     # fix sizes
