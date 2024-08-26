@@ -378,15 +378,16 @@ def fix_file(filename):
     data.drop(columns=['Nome ITA', 'Descrizione ITA', 'Star', 'Insole length', 'Color Styleisnow ITA', 'FTA'], inplace=True)
     
     data.to_csv('all_products.csv')
+    return data
     
-    bags = data[data['Tags'].str.lower().str.contains('bags')]
-    bags.drop(columns=['Accessory length', 'Accessory height', 'Accessory weight', 'Heel height', 'Plateau height',], inplace=True)
-    bags['SKU FULL'] = bags['Sku Styleisnow'] + '-' + 'os'
+    # bags = data[data["Product's Title"].str.contains('Bag')]
+    # bags.drop(columns=['Accessory length', 'Accessory height', 'Accessory weight', 'Heel height', 'Plateau height',], inplace=True)
+    # bags['SKU FULL'] = bags['Sku Styleisnow'] + '-' + 'os'
     
-    bags.to_csv('bags.csv', index=False)
+    # bags.to_csv('bags.csv', index=False)
     
-    others = data[~data['Tags'].str.lower().str.contains('bags')]
-    others.drop(columns=['Bag length', 'Bag height', 'Bag width', 'Dimensions'], inplace=True)
+    # others = data[~data["Product's Title"].str.contains('Bag')]
+    # others.drop(columns=['Bag length', 'Bag height', 'Bag width', 'Dimensions'], inplace=True)
     
-    others.to_csv('other_products.csv', index=False)
-    return bags, others
+    # others.to_csv('other_products.csv', index=False)
+    # return bags, others
