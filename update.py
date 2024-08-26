@@ -37,16 +37,18 @@ def get_data():
         return None
     
 def get_products_to_add(new_products):
-    old_bags = pd.read_csv('bags.csv')
-    old_others = pd.read_csv('other_products.csv')
+    # old_bags = pd.read_csv('bags.csv')
+    # old_others = pd.read_csv('other_products.csv')
     
     new_bags = new_products[new_products["Product's Title"].str.contains('bag')]
-    bags = new_bags[~new_bags['Sku Styleisnow'].isin(old_bags['Sku Styleisnow'].values.tolist())]
-    bags.to_csv('bags_to_add.csv', index=False)
+    new_bags.to_csv('bags_to_add.csv', index=False)
+    # bags = new_bags[~new_bags['Sku Styleisnow'].isin(old_bags['Sku Styleisnow'].values.tolist())]
+    # bags.to_csv('bags_to_add.csv', index=False)
     
     new_others = new_products[~new_products["Product's Title"].str.contains('bag')]
-    others = new_others[~new_others['Sku Styleisnow'].isin(old_others['Sku Styleisnow'].values.tolist())]
-    others.to_csv('others_to_add.csv', index=False)
+    new_others.to_csv('others_to_add.csv', index=False)
+    # others = new_others[~new_others['Sku Styleisnow'].isin(old_others['Sku Styleisnow'].values.tolist())]
+    # others.to_csv('others_to_add.csv', index=False)
     # others = new_others[~new_others['Sku Styleisnow'].isin(old_others['Sku Styleisnow'].values.tolist())]
     
     # bags.to_csv('bags_to_add.csv', index=False)
